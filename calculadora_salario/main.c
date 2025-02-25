@@ -31,29 +31,32 @@ float calcular_ir(float salario_bruto) {
 }
 
 // Função para calcular o salário líquido
-float calcular_salario_liquido(float salario_bruto) {
+float calcular_salario_liquido(float salario_bruto, float vale_alimentacao) {
     float inss = calcular_inss(salario_bruto);
     float ir = calcular_ir(salario_bruto);
-
-    return salario_bruto - inss - ir;
+    return salario_bruto - inss - ir - vale_alimentacao;
 }
 
 int main() {
-    float salario_bruto;
+    float salario_bruto, vale_alimentacao;
 
     // Entrada de dados
     printf("Digite o salario bruto: R$ ");
     scanf("%f", &salario_bruto);
 
+    printf("Digite o valor do desconto do vale-alimentacao: R$ ");
+    scanf("%f", &vale_alimentacao);
+
     // Cálculos
     float inss = calcular_inss(salario_bruto);
     float ir = calcular_ir(salario_bruto);
-    float salario_liquido = calcular_salario_liquido(salario_bruto);
+    float salario_liquido = calcular_salario_liquido(salario_bruto, vale_alimentacao);
 
     // Resultado
     printf("\nSalario Bruto: R$ %.2f\n", salario_bruto);
     printf("Desconto INSS: R$ %.2f\n", inss);
     printf("Desconto Imposto de Renda: R$ %.2f\n", ir);
+    printf("Desconto Vale-Alimentacao: R$ %.2f\n", vale_alimentacao);
     printf("Salario Liquido: R$ %.2f\n", salario_liquido);
 
     return 0;
